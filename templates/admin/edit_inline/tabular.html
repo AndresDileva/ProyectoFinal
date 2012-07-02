@@ -1,47 +1,6 @@
 {% load url from future %}
 {% load i18n adminmedia grp_tags %}
-<script>
 
-function suma(){
-
-m1 = document.getElementById("cantidad").value;
-m2 = document.getElementById("valor_unitario").value;
-r = m1*m2;
-document.getElementById("total").value = r;
-alert('hola = '+r);
-}
-
-function addRowListeners() {
-/* Check that the getElementById method is
-* supported before trying to use it.
-*/
-function showRowNum() {
- // if('number' == typeof this.rowIndex) {
-    //alert('You clicked row: ' + (this.rowIndex)+'valor'+(this.text));
-alert('hola');
-
-  }
-
-if(document.getElementById) {
-/* Change the string, 'myTable', to reflect the actual id. */
-var table = document.getElementById('myTable'), rows;
-/* Ensure a reference was obtained and
-* that we can access the rows.
-*/
-if(table && (rows = table.rows)) {
-/* Add the listener to each row in the table. */
-for(var i = 0, n = rows.length; i < n; ++i) {
-rows[i].onclick= showRowNum();
-//m1 = document.getElementById("cantidad").value;
-//m2 = document.getElementById("valor_unitario").value;
-//r = m1*m2;
-//document.getElementById("total").value = r;
-//alert('You clicked row: ' + (this.rowIndex)+'valor'+r);
-}
-}
-}
-}
-</script>
 <body > 
 <!-- group -->
 <div class="group tabular{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
@@ -91,15 +50,7 @@ rows[i].onclick= showRowNum();
                     {% if field.is_readonly %}
                       <p>{{ field.contents }}</p>
                     {% else %}
-                       {% if field.field.name == 'cantidad' %}  <input type="text" id="cantidad" onChange="suma();" value={{field.field.value }}> 
-                       {% else %}
-                         {% if field.field.name == 'valor_unitario' %}   <input type="text" id="valor_unitario" onChange="suma();" > 
-                         {% else %}
-                            {% if field.field.name == 'total' %}   <input type="text" id="total" value=0 onFocus="suma();"> 
-                            {% else %} {{field.field}}
-                            {% endif %}
-                         {% endif %}
-                       {% endif %}
+			{{field.field}}
                     {% endif %}
                     {% if field.field.help_text %}<p class="help">{{ field.field.help_text }}</p>{% endif %}
                     </div>
@@ -134,8 +85,11 @@ rows[i].onclick= showRowNum();
         {% endwith %}
     </div>
     <div class="module add-item">
-        <a href="javascript://" class="add-handler">{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</a>
+
+<a href="javascript://" class="add-handler" name="_continue"><input type="submit" value="{% trans 'Agregar Otro' %}" class="default" name="_continue"/></A>
+       
         <ul class="tools">
+      
             <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
         </ul><br clear="all" />
     </div>
@@ -322,4 +276,67 @@ rows[i].onclick= showRowNum();
         
     });
 })(django.jQuery);
+</script>
+<script>
+
+function suma(el){
+/*
+m1 = document.getElementById("cantidad").value;
+m2 = document.getElementById("valor_unitario").value;
+r = m1*m2;
+document.getElementById("total").value = r;
+alert('hola = '+r);
+*/
+    var $c = django.jQuery(el).parents(".dynamic-form:first");
+    var c = django.jQuery(".cantidad input", $c).val();
+    var v = django.jQuery(".valor_unitario input", $c).val();  
+    django.jQuery(".total input", $c).val(c*v);
+ 
+
+}
+
+function addRowListeners() {
+/* Check that the getElementById method is
+* supported before trying to use it.
+*/
+function showRowNum() {
+ // if('number' == typeof this.rowIndex) {
+    //alert('You clicked row: ' + (this.rowIndex)+'valor'+(this.text));
+alert('hola');
+
+  }
+
+if(document.getElementById) {
+/* Change the string, 'myTable', to reflect the actual id. */
+var table = document.getElementById('myTable'), rows;
+/* Ensure a reference was obtained and
+* that we can access the rows.
+*/
+if(table && (rows = table.rows)) {
+/* Add the listener to each row in the table. */
+for(var i = 0, n = rows.length; i < n; ++i) {
+rows[i].onclick= showRowNum();
+
+//m1 = document.getElementById("cantidad").value;
+//m2 = document.getElementById("valor_unitario").value;
+//r = m1*m2;
+//document.getElementById("total").value = r;
+//alert('You clicked row: ' + (this.rowIndex)+'valor'+r);
+}
+}
+}
+}
+
+
+
+django.jQuery(document).ready(function(){
+    django.jQuery(".dynamic-form .cantidad input, .dynamic-form .valor_unitario input").change(function(){
+        suma(this);
+    }); 
+
+});
+
+
+
+
 </script>
