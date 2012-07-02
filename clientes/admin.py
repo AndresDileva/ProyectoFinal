@@ -7,11 +7,11 @@ from django.forms import TextInput, Textarea
 
 class TelefonoInline(admin.TabularInline):
     model = Telefono
-    extra = 0
+    extra = 1
 
 class EmailInline(admin.TabularInline):
     model = Email
-    extra = 0
+    extra = 1
 
 class ClienteOptions(admin.ModelAdmin):
 #	list_display = ('nombre','cliente','ciudad','estado')
