@@ -38,7 +38,8 @@ LANGUAGE_CODE = 'es-ar'
 # que podria levantar el ROSETTA
 LOCALE_PATHS = (
     #'/home/www/project/common_files/locale',
-    '/usr/local/lib/python2.6/dist-packages/django/contrib/admin/locale'
+   # '/usr/local/lib/python2.6/dist-packages/django/contrib/admin/locale'
+     '/usr/local/lib/python2.6/dist-packages/django/contrib/admin/locale'
 )
 
 
@@ -65,7 +66,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/living/Dropbox/Oscar/solanaABM012/grappelli/'
+STATIC_ROOT = '/home/andrea/GitHub_Docs/ProyectoFinal/grappelli/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -138,7 +139,7 @@ INSTALLED_APPS = (
     'smart_selects',
     'clientes',
     'pruebas',
-    'rosetta',
+   # 'rosetta',
     'grappelli',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
