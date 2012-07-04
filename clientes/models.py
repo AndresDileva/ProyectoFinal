@@ -123,6 +123,13 @@ class ConjuntoCosto(models.Model):
 
 class Costo(models.Model):
     conjunto_costo = models.ForeignKey(ConjuntoCosto)
+#    tipo = ChainedForeignKey(
+#        TipoRecurso, 
+#        chained_field="tipo",
+#        chained_model_field="tipo", 
+#        show_all=False, 
+#        auto_choose=True
+#    )
     tipo = models.ForeignKey(TipoRecurso)
     recurso = ChainedForeignKey(
         Recurso, 
@@ -132,9 +139,16 @@ class Costo(models.Model):
         auto_choose=True
     )
     cantidad = models.DecimalField(null = True, blank = True, default = 0.0, max_digits = 5, decimal_places = 2)
-    unidad = models.ForeignKey(Unidad, null = True, blank = True)
+    #unidad = models.ForeignKey(Unidad, null = True, blank = True)
+    unidad  = ChainedForeignKey(
+        Unidad, 
+        chained_field="recurso",
+        chained_model_field="recurso", 
+        show_all=False, 
+        auto_choose=True
+    )
     valor_unitario = models.DecimalField(default = 0.0, max_digits = 5, decimal_places = 2)  
-    total = models.DecimalField(default = 0.0, max_digits = 5, decimal_places = 2)  
+    total = models.DecimalField(default = 0.0, max_digits = 10, decimal_places = 2)  
     observaciones = models.TextField(max_length=50 , null = True, blank = True)
 
     def __unicode__(self):

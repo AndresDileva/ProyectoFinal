@@ -112,25 +112,27 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'solanaABM012.urls'
+ROOT_URLCONF = 'ProyectoFinal.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-     '/home/living/Dropbox/Oscar/solanaABM012/templates/',
+    # '/home/living/Dropbox/Oscar/solanaABM012/templates/',
+      '/home/andrea/GitHub_Docs/ProyectoFinal/templates/',
+ #     '/home/andrea/solanaABM012/templates/',
 )
-TEMPLATE_CONTEXT_PROCESSORS = (
+#TEMPLATE_CONTEXT_PROCESSORS = (
     # required by django.contrib.admin anyway
-    "django.core.context_processors.auth",
+#    "django.core.context_processors.auth",
     # required by grappelli
     #"django.core.context_processors.request",
     
     # required to render correct templates (grappelli+admin-tools or grappelli "standalone")
    # 'grappelli.context_processors.admin_template_path',
-)
+#)
 INSTALLED_APPS = (
-    'auth',
+  #  'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',

@@ -39,7 +39,7 @@ class CostoInline(admin.TabularInline):
         models.DecimalField: {'widget': TextInput(attrs={'size':'8'})},
     }
     fieldsets = (							#aca se podria definir el orden de las columnas
-		(None, {
+		('Prueba', {
 			'fields':('tipo', 'recurso','cantidad','unidad','valor_unitario','total','observaciones')
 			}),
 	        )

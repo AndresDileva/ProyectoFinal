@@ -56,8 +56,22 @@ class TipoRecurso(models.Model):
     def __unicode__(self):
         return self.name
 
+class Unidad(models.Model):       
+    name = models.CharField('Nombre', max_length=20)
+    abreviacion = models.CharField(max_length=10)
+    descripcion = models.TextField('Descripción', max_length = 100, null = True, blank = True)
+   
+
+    class Meta:
+	verbose_name = 'Unidad'     
+	verbose_name_plural = 'Unidades'
+
+    def __unicode__(self):
+        return self.abreviacion
+
 class Recurso(models.Model):
     tipo = models.ForeignKey(TipoRecurso)
+    unidad = models.ForeignKey(Unidad) #esto es de prueba
     name = models.CharField('Nombre', max_length = 50)
     descripcion = models.TextField('Descripción', max_length = 100, null = True, blank = True)
     
@@ -68,17 +82,6 @@ class Recurso(models.Model):
     def __unicode__(self):
 	return self.name
 
-class Unidad(models.Model):       
-    name = models.CharField('Nombre', max_length=20)
-    abreviacion = models.CharField(max_length=10)
-    descripcion = models.TextField('Descripción', max_length = 100, null = True, blank = True)
-
-    class Meta:
-	verbose_name = 'Unidad'     
-	verbose_name_plural = 'Unidades'
-
-    def __unicode__(self):
-        return self.abreviacion
 
 class TipoCobro(models.Model):
     name = models.CharField('Nombre', max_length = 50)
